@@ -1,0 +1,22 @@
+{
+  "name": "picala",
+  "version": "1.0.0",
+  "description": "hue controller for presentation",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yumu19/picala.git"
+  },
+  "author": "Tsubasa Yumura",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yumu19/picala/issues"
+  },
+  "homepage": "https://github.com/yumu19/picala",
+  "devDependencies": {
+    "nodemon": "^1.5.0"
+  }
+}
