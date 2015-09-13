@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+</head>
+
+<body>
+<h1>あどみんweb</h1>
+<script src="jquery-1.11.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+var socket = io();
+// var ipaddr = "192.168.3.15";
+var url = "http://192.168.3.15/api/newdeveloper/lights/2/state"
+QUERY="{\"on\":true, \"sat\":0, \"bri\":0, \"hue\":${HUE}}"
+var data ={"on":true,"sat":255,"bri":255,"hue":20000};
+
+socket.on('type', function(type){
+  $.ajax({
+    type: "PUT",
+    url: url,
+    data: JSON.stringify(data),
+    // success: success,
+    dataType: "json"
+  });
+  console.log(type);
+});
+</script>
+</body>
+</html>
