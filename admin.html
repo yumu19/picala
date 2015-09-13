@@ -13,15 +13,21 @@
 var socket = io();
 // var ipaddr = "192.168.3.15";
 var url = "http://192.168.3.15/api/newdeveloper/lights/2/state"
-QUERY="{\"on\":true, \"sat\":0, \"bri\":0, \"hue\":${HUE}}"
-var data ={"on":true,"sat":255,"bri":255,"hue":20000};
 
 socket.on('type', function(type){
+  if (type == "hee") {
+    data ={"on":true,"sat":255,"bri":255,"hue":10000};
+  } else if (type == "great") {
+    data ={"on":true,"sat":255,"bri":255,"hue":65535};
+  } else if (type == "www"){
+    data ={"on":true,"sat":255,"bri":255,"hue":25500};
+  } else {
+    data ={"on":true,"sat":255,"bri":255,"hue":47000};
+  }
   $.ajax({
     type: "PUT",
     url: url,
     data: JSON.stringify(data),
-    // success: success,
     dataType: "json"
   });
   console.log(type);
