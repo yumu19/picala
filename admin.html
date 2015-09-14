@@ -2,41 +2,73 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Untitled</title>
+  <title>PICALA for Admin</title>
 </head>
 
 <body>
-<h1>あどみんweb</h1>
+<h1>PICALA for Admin</h1>
 <script src="jquery-1.11.1.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
+
+//====== ユーザ毎の設定項目 ======
+var ip = "192.168.3.15"; //hueブリッジのIPアドレス
+var user = "newdeveloper"; //hue APIのユーザ名
+var interval = 5000; //hueの点灯時間[msec]
+//=============================
+
 var socket = io();
-// var ipaddr = "192.168.3.15";
-var ip = "192.168.3.15";
 var num = 1;
 var url = "";
-var user = "newdeveloper";
+var timer1,timer2,timer3;
+var timers = [timer1,timer2,timer3];
 
 socket.on('type', function(type){
-  url = "http://"+ip+"/api/"+user+"/lights/"+num+"/state"
-  if (type == "hee") {
-    data ={"on":true,"sat":255,"bri":255,"hue":10000};
-  } else if (type == "great") {
-    data ={"on":true,"sat":255,"bri":255,"hue":65535};
-  } else if (type == "www"){
-    data ={"on":true,"sat":255,"bri":255,"hue":25500};
-  } else {
-    data ={"on":true,"sat":255,"bri":255,"hue":47000};
-  }
+  url = "http://"+ip+"/api/"+user+"/lights/"+num+"/state";
+  turnOn(url,type);
+  turnOff(url,num);
+  num = num + 1;
+  if (num == 4) {num = 1};
+  console.log(num);
+});
+
+function putHue(url,data){
   $.ajax({
     type: "PUT",
     url: url,
-    data: JSON.stringify(data),
+    data: data,
     dataType: "json"
   });
-  num = num + 1;
-  if (num == 4) {num = 1};
-});
+}
+
+function turnOn(u,t){
+  switch(t) {
+    case "hee":
+      hue = 10000;
+      break;
+    case "great":
+      hue = 65535;
+      break;
+    case "www":
+      hue = 25500;
+      break;
+    case "question":
+      hue = 47000;
+      break;
+    default:
+      break;
+  }
+  d ={"on":true,"sat":255,"bri":255,"hue":hue};
+  putHue(u,JSON.stringify(d));
+}
+
+function turnOff(u,i){
+  if (timers[i-1] !== null){
+    clearTimeout(timers[i-1]);
+  }
+  d ={"on":true,"sat":0,"bri":0,"hue":0};
+  timers[i-1] = setTimeout(putHue,interval,u,JSON.stringify(d));
+}
 </script>
 </body>
 </html>

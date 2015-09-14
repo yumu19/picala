@@ -6,8 +6,9 @@ $(function(){
 	$('#www').get(0).addEventListener("click", www, false);
 	$('#question').get(0).addEventListener("click", question, false);
 })
-
-var server = "http://localhost:3000/push?type=";
+var host = "http://localhost"; //デプロイする環境のIPアドレスまたはFQDN
+var port = "3000"; //デプロイする環境のnode.js(app.js)の待ち受けポート
+var server = host +":"+ port + "/push?type=";
 
 function hee(){
 	url = server + "hee";
