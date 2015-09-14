@@ -12,9 +12,13 @@
 <script type="text/javascript">
 var socket = io();
 // var ipaddr = "192.168.3.15";
-var url = "http://192.168.3.15/api/newdeveloper/lights/2/state"
+var ip = "192.168.3.15";
+var num = 1;
+var url = "";
+var user = "newdeveloper";
 
 socket.on('type', function(type){
+  url = "http://"+ip+"/api/"+user+"/lights/"+num+"/state"
   if (type == "hee") {
     data ={"on":true,"sat":255,"bri":255,"hue":10000};
   } else if (type == "great") {
@@ -30,7 +34,8 @@ socket.on('type', function(type){
     data: JSON.stringify(data),
     dataType: "json"
   });
-  console.log(type);
+  num = num + 1;
+  if (num == 4) {num = 1};
 });
 </script>
 </body>
