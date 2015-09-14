@@ -1,0 +1,26 @@
+.btn{
+  color: #FFF;
+	border: none;
+	width: 50%;
+  height: 50%;
+	padding: 0px;
+  margin: 0px;
+  /*font-size: xx-large;*/
+  font-size: 64px;
+}
+
+#hee{
+	background: #FF7F00;
+}
+#great{
+  background: #EE0026;
+}
+#www{
+  background: #33A23C;
+}
+#question{
+  background: #0F228B;
+}
+div.btns {
+  padding: 0px;
+}

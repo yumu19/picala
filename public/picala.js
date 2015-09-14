@@ -6,7 +6,7 @@ $(function(){
 	$('#www').get(0).addEventListener("click", www, false);
 	$('#question').get(0).addEventListener("click", question, false);
 })
-var host = "http://localhost"; //デプロイする環境のIPアドレスまたはFQDN
+var host = "http://192.168.3.5"; //デプロイする環境のIPアドレスまたはFQDN
 var port = "3000"; //デプロイする環境のnode.js(app.js)の待ち受けポート
 var server = host +":"+ port + "/push?type=";
 
